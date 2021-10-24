@@ -153,9 +153,24 @@ shut_down_on_finish = False
 <br><br>
 
 # Usage
+
+- Create virtual enviornment:
+```
+python3 -m venv lazy-wifi
+cd lazy_venv
+```
+- Activate the venv
+```
+source lazy_venv/bin/activate
+```
+- Install requirements
+```
+pip install -r lazy_wifi/requirements.txt
+```
+
 - As simple as:
 ```
-python3 -m lazy-wifi
+python -m lazy-wifi
 ```
 <br><br>
 
