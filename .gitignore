@@ -1,0 +1,5 @@
+*__pycache__*
+*__init__.pyc
+.idea*
+*lazy_wifi/keys/*
+*lazy_wifi/data
