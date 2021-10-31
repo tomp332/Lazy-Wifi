@@ -19,9 +19,10 @@
       - [For both types of installations:](#for-both-types-of-installations)
       - [Docker Option](#docker-option)
       - [Local option](#local-option)
+      
 - [Usage](#usage)
-      - [Docker option](#docker-option)
-      - [Local option](#local-option)
+      - [Docker option](#docker-option-1)
+      - [Local option](#local-option-1)
 - [Contact](#contact)
 - [Disclaimer](#disclaimer)
 
@@ -149,7 +150,7 @@ main_region_zone = eu-central-1
 shut_down_on_finish = False
 ```
 
-#### Docker Option
+#### Docker
 
 - Build Lazy-Wifi in a simple docker container without any worries:
 ```
@@ -157,7 +158,7 @@ cd lazy-wifi
 docker build -t lazy-wifi .
 ```
 
-#### Local option
+#### Local
 - Install Airmong-ng for scanning
 ```
 sudo apt-get update
