@@ -16,16 +16,12 @@
     - [Mailgun](#mailgun)
     - [AWS](#aws)
     - [Lazy-Wifi](#lazy-wifi)
-      - [For both types of installations:](#for-both-types-of-installations)
-      - [Docker Option](#docker-option)
-      - [Local option](#local-option)
-      
+      - [Docker](#docker)
+      - [Local](#local)
 - [Usage](#usage)
-      - [Docker option](#docker-option)
-      - [Local option](#local-option)
 - [Contact](#contact)
 - [Disclaimer](#disclaimer)
-
+  
 <br><br>
 
 # About The Project
@@ -86,7 +82,8 @@ pip install requests
 ```
 
 ### Lazy-Wifi 
-#### For both types of installations:
+
+For both types of installations
 - Edit configuration file located in lazy_wifi/config/config.ini
 ```
 [BASIC_CONF]
@@ -181,16 +178,17 @@ pip install -r lazy-wifi/requirements.txt
 ```
 <br><br>
 
+
 # Usage
 
-#### Docker option
+Docker option
 
 - This is needed in order to bridge your wifi interface to the docker container:
 ```
 docker run -it --net="host" --privileged lazy-wifi
 ```
 
-#### Local option
+Local option
 
 - As simple as (with virtual python environment activated, run the interpreter with sudo):
 ```
