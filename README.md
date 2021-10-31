@@ -20,8 +20,8 @@
       - [Docker Option](#docker-option)
       - [Local option](#local-option)
 - [Usage](#usage)
-      - [Docker option](#docker-option-1)
-      - [Local option](#local-option-1)
+      - [Docker option](#docker-option)
+      - [Local option](#local-option)
 - [Contact](#contact)
 - [Disclaimer](#disclaimer)
 
@@ -184,7 +184,7 @@ pip install -r lazy-wifi/requirements.txt
 
 #### Docker option
 
-- This is needed in order to bridge your wifi interface to the docker container
+- This is needed in order to bridge your wifi interface to the docker container:
 ```
 docker run -it --net="host" --privileged lazy-wifi
 ```
