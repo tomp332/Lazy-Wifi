@@ -21,8 +21,8 @@
       - [Local option](#local-option)
       
 - [Usage](#usage)
-      - [Docker option](#docker-option-1)
-      - [Local option](#local-option-1)
+      - [Docker option](#docker-option)
+      - [Local option](#local-option)
 - [Contact](#contact)
 - [Disclaimer](#disclaimer)
 
