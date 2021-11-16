@@ -51,7 +51,7 @@ class RemoteAutomation:
         print("[+] Starting password cracking!")
         command = f"cowpatty " \
                   f"-r '{self._PCAP_FILES_DIRECTORY}/{self.file}' " \
-                  f"-s '{self.ssid}' -f '{self._MAIN_DICTIONARY_FILE}' -2"
+                  f"-s '{self.ssid}' -f '{self._MAIN_DICTIONARY_FILE}'"
         output, _ = self.execute_command(command)
         output = output.decode()
         # Start parsing cowpatty output until error, success or failure is outputted
