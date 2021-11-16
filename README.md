@@ -59,7 +59,7 @@
 
 - Create an AWS [account](https://aws.amazon.com) and configure an EC2 instance.
 - Setup a private key or password for your EC2 SSH connection, you will be needing them for the Lazy-Wifi configuration.
-- Upload `remote_machine_automation.py.py` script to remote machine, and configure the following const variables:
+- Upload `remote_automation.py.py` script to remote machine, and configure the following const variables:
 ```
 # Files settings
     _DICTIONARY_FILE = '<Main dictionary file to load for brute force>'
