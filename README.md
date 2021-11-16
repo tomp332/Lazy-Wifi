@@ -41,7 +41,7 @@
 - Scans for surrounding access points.
 - Deauth optional/all clients assosiated to access points.
 - Capture handshakes after deauth
-- Send handshakes to brute force AWS EC2 instance
+- Send handshakes to brute force AWS EC2 instance or any remote machine of your choice
 - Send email after finishing cracking password
  
 <br><br>
@@ -59,7 +59,7 @@
 
 - Create an AWS [account](https://aws.amazon.com) and configure an EC2 instance.
 - Setup a private key or password for your EC2 SSH connection, you will be needing them for the Lazy-Wifi configuration.
-- Upload `aws_automation.py` script to remote machine, and configure the following const variables:
+- Upload `remote_machine_automation.py.py` script to remote machine, and configure the following const variables:
 ```
 # Files settings
     _DICTIONARY_FILE = '<Main dictionary file to load for brute force>'
@@ -93,7 +93,7 @@ interface_name =
 
 [LOGS]
 
-# Log leven for application
+# Log level for application
 log_level = INFO
 
 [RECON]
@@ -106,7 +106,7 @@ recon_scan_time = 30
 # Number of deauthentication packets to send to each target
 num_deauth_packets = 30
 
-# SSID names to target, if blank all targets will be attacked must be list format 
+# SSID names to target, if blank all targets will be attacked must be list format
 # Structure: ['..', '..']
 target_ssid_list = []
 
@@ -116,6 +116,12 @@ target_ssid_list = []
 handshake_scan_time = 35
 
 [REMOTE_CONNECTION]
+
+# SSH hostname
+remote_ssh_hostname =
+
+# SSH port, default is 22
+remote_connection_port =
 
 # SSH private key, if none leave blank
 private_key_path =
@@ -128,6 +134,9 @@ remote_ssh_username =
 
 # Path to upload all pcap files for cracking default is ~/wifi_files
 remote_upload_dir =
+
+# Path for the remote automation python script
+remote_automation_script_path =
 
 [AWS]
 
@@ -144,7 +153,7 @@ aws_secret_access_key =
 main_region_zone = eu-central-1
 
 # Option to shut down the instance after finishing the attack
-shut_down_on_finish = False
+shut_down_on_finish = True
 ```
 
 #### Docker
