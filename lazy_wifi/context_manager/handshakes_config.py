@@ -13,7 +13,7 @@ class HandshakesConfig:
         try:
             # Validate num of packets
             handshake_scan_time = int(self.current_config_section.get('handshake_scan_time'))
-            self.context.validate_scan_times(handshake_scan_time,
+            self.context.validate_positive_int(handshake_scan_time,
                                              section='HANDSHAKES',
                                              message="handshake_scan_time is not set to a valid number")
             self.context.handshake_scan_time = int(handshake_scan_time)

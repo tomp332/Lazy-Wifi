@@ -2,6 +2,7 @@ from pathlib import Path
 from threading import Event
 
 import pandas
+import paramiko
 from scapy.contrib.wpa_eapol import WPA_key
 from scapy.sendrecv import sniff
 from scapy.utils import wrpcap
@@ -10,7 +11,7 @@ from lazy_wifi.class_exceptions.exceptions import LazyWifiException
 from lazy_wifi.context_manager.context import Context
 from lazy_wifi.src.deauth_attack import DeauthAttacker
 from lazy_wifi.src.remote_connection import RemoteConnection
-from lazy_wifi.src.utils import print_status, print_message, print_alert
+from lazy_wifi.src.utils import print_status, print_message, print_alert, print_error
 
 
 class HandshakeManager:
@@ -43,7 +44,7 @@ class HandshakeManager:
                             self._capture_handshake(ap_mac_addr)
                     else:
                         self._capture_handshake(ap_mac_addr)
-        except (KeyboardInterrupt, SystemExit):
+        except (KeyboardInterrupt, SystemExit, LazyWifiException) as e:
             raise LazyWifiException
 
     def _capture_handshake(self, ap_mac_addr: str):
@@ -59,8 +60,8 @@ class HandshakeManager:
             self.context.main_logger.info(f"Sending deauth attack on ESSID: {self.ssid} BSSID: {self.bssid}")
             self.deauth_attacker.threaded_deauth_attack(self.channel, access_point_addr=self.bssid)
             self._sniff_handshakes()
-        except (KeyboardInterrupt, SystemExit):
-            raise LazyWifiException
+        except (KeyboardInterrupt, SystemExit, LazyWifiException) as e:
+            raise e
 
     def _handle_eapol(self, eapol_packet):
         """
@@ -164,9 +165,13 @@ class HandshakeManager:
 
             :param filename: Captured EAPOL file name
         """
-        with RemoteConnection(self.context) as connection:
-            if connection:
-                connection.start_brute_force_on_file(filename, self.ssid)
+        try:
+            with RemoteConnection(self.context) as connection:
+                if connection:
+                    connection.start_brute_force_on_file(filename, self.ssid)
+        except (paramiko.ssh_exception.NoValidConnectionsError, OSError) as e:
+            print_error(f"SSH connection to remote machine error, {e}")
+            raise KeyboardInterrupt
 
     def _handle_handshake_packets(self, pkt):
         if pkt.haslayer(WPA_key):
@@ -174,7 +179,6 @@ class HandshakeManager:
 
     def _sniff_handshakes(self):
         print_status(f"Starting sniffing on channel: {self.channel} for ESSID: {self.ssid}")
-
         sniff(iface=self.interface_handle.dev, prn=self._handle_handshake_packets,
               timeout=self.context.handshake_scan_time)
         print_message(f"Total handshakes found: {self.handshake_counter}")

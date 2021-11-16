@@ -48,8 +48,7 @@ class Interfaces:
 
     def interfaces_cleanup(self):
         self.switch_to_managed_mode()
-        if os.environ.get('IN_DOCKER_ENV', False):
-            self.restart_network_manager()
+        self.restart_network_manager()
 
     @staticmethod
     def restart_network_manager():
@@ -83,5 +82,5 @@ class Interfaces:
         """
         try:
             pyw.chset(interface_handle, int(channel), None)
-        except (TypeError, OSError):
-            print_error(f"unable to change adapter {interface_handle.dev} channel to {channel}")
+        except (TypeError, OSError) as e:
+            print_error(f"unable to change adapter {interface_handle.dev} channel to {channel}, {e}")

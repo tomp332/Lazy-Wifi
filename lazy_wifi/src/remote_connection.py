@@ -13,30 +13,41 @@ logging.getLogger("paramiko").setLevel(logging.ERROR)
 class RemoteConnection:
     def __init__(self, context: Context):
         self.context = context
-        self.remote_hostname = self.context.ec2_public_hostname
-        self.remote_username = self.context.remote_username
         # Paramiko required conversion between types of private key files
-        if self.context.private_key_path:
-            self.private_key_file = RSAKey.from_private_key_file(self.context.private_key_path)
+        if self.context.remote_private_key_path:
+            self.private_key_file = RSAKey.from_private_key_file(self.context.remote_private_key_path)
         # Set up a remote ssh connection
         self.ssh_connection = SSHClient()
         self.ssh_connection.set_missing_host_key_policy(AutoAddPolicy())
 
     def __enter__(self):
         """
-            :return: Init for ssh connection once class is used
+            Checks for all the options for SSH authentication (private key, password, public key only)
+
+            :return: Init for ssh connection once class is
         """
         try:
             # Use password
             if self.context.remote_password:
-                self.ssh_connection.connect(self.remote_hostname,
-                                            username=self.remote_username,
+                self.ssh_connection.connect(self.context.remote_hostname,
+                                            username=self.context.remote_username,
                                             password=self.context.remote_password,
+                                            port=self.context.remote_connection_port,
+                                            auth_timeout=self.context.remote_connection_timeout)
+            elif self.context.remote_private_key_path:
+                # Use private key only
+                self.ssh_connection.connect(self.context.remote_hostname,
+                                            username=self.context.remote_username,
+                                            pkey=self.private_key_file,
+                                            port=self.context.remote_connection_port,
                                             auth_timeout=self.context.remote_connection_timeout)
             else:
-                # Use private key only
-                self.ssh_connection.connect(self.remote_hostname, username=self.remote_username,
-                                            pkey=self.private_key_file)
+                # No other methods needed for authentication
+                self.ssh_connection.connect(self.context.remote_hostname,
+                                            username=self.context.remote_username,
+                                            port=self.context.remote_connection_port,
+                                            auth_timeout=self.context.remote_connection_timeout)
+
         except TimeoutError:
             print_error("Time out while trying to connect to remote machine")
             self.context.main_logger.info("Time out while trying to connect to remote machine")
@@ -98,5 +109,6 @@ class RemoteConnection:
             :param filename: Filename of the pcap file to upload and start brute force on
         """
         self._upload_file_to_remote(filename)
-        self._execute_command(f"/home/ubuntu/crack.py '{ssid}' '{Path(filename).name}'")
-        self.context.main_logger.info(f"Send crack task to remote machine for ssid : {ssid}")
+        self._execute_command(f"{self.context.remote_automation_script_path} '{ssid}' '{Path(filename).name}'")
+        print_status(f"Sent cracking task to remote machine for ssid : {ssid}")
+        self.context.main_logger.info(f"Sent cracking task to remote machine for ssid : {ssid}")

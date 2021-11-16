@@ -25,8 +25,8 @@ class ContextManager:
             ReconConfig(self.context).setup()
             AttackConfig(self.context).setup()
             HandshakesConfig(self.context).setup()
-            RemoteConnectionConfig(self.context).setup()
             AWSConfig(self.context).setup()
+            RemoteConnectionConfig(self.context).setup()
             # Return a configured and initialized Context class object
             return self.context
         except ConfigurationException as e:

@@ -39,13 +39,15 @@ class Context:
         self.saved_pcap_files_directory = f'{self.data_directory}/handshakes'
 
         # Remote connections
-        self.private_key_path = None
+        self.remote_hostname = None
+        self.remote_private_key_path = None
         self.remote_username = None
         self.remote_password = None
+        self.remote_connection_port = None
         self.remote_files_dir = None
-        self.ec2_public_hostname = None
         self.remote_connection_timeout = 10
-        self.remote_upload_dir = '~/wifi_uploads'
+        self.remote_upload_dir = None
+        self.remote_automation_script_path = f'/home/{self.remote_username}/automation.py'
 
         # AWS configuration
         self.instance_id = None
@@ -56,12 +58,13 @@ class Context:
 
         # Main feature control
         self.remote_machine_available = False
+        self.remote_machine_is_aws = False
 
     def setup(self):
         pass
 
     @staticmethod
-    def validate_scan_times(num, section, message) -> None or ConfigurationException:
+    def validate_positive_int(num, section, message) -> None or ConfigurationException:
         if num < 0:
             raise ConfigurationException(section=section, message=message)
 

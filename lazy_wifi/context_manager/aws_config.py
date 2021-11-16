@@ -1,6 +1,6 @@
 from distutils.util import strtobool
 
-from lazy_wifi.src.utils import print_error
+from lazy_wifi.src.utils import print_status
 
 
 class AWSConfig:
@@ -17,13 +17,15 @@ class AWSConfig:
         self.context.shut_down_on_finish = strtobool(self.current_config_section.get('shut_down_on_finish'))
         self.context.instance_id = self.current_config_section.get('instance_id').strip()
         self.context.region = self.current_config_section.get('main_region_zone').strip()
+        self.validate_aws_machine()
+
+    def validate_aws_machine(self):
         if self.context.region \
                 and self.context.instance_id \
                 and self.context.aws_access_key_id \
                 and self.context.aws_secret_access_key \
                 and self.context.remote_username \
                 and (self.context.private_key_path or self.context.remote_password):
-            self.context.remote_machine_available = True
+            self.context.remote_machine_is_aws = True
         else:
-            print_error("Remote machine configuration not specified, continuing without")
-            self.context.main_logger.info("Remote machine configuration not specified, continuing without")
+            self.context.main_logger.info("AWS configuration error, continuing without")

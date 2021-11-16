@@ -22,7 +22,7 @@ class AWSAutomation:
     _FAILED_KEY = 'Unable to identify the PSK from the dictionary file'
 
     # Email settings
-    _MAILGUN_EMAIL = ''
+    _MAILGUN_USER = ''
     _MAILGUN_API_KEY = ''
     _MAILGUN_DOMAIN = ''
     _DESTINATION_EMAIL = ''
@@ -42,12 +42,13 @@ class AWSAutomation:
             self.file = sys.argv[2].strip()
         else:  # Print help message because of invalid arguments
             self.help_message()
-            raise Exception("Invalid amount of arguments")
+            raise Exception("[-] Invalid amount of arguments")
 
     def start_cracking(self):
         """
         Start cracking password, send mail if password was cracked
         """
+        print("[+] Starting password cracking!")
         command = f"cowpatty " \
                   f"-r '{self._PCAP_FILES_DIRECTORY}/{self.file}' " \
                   f"-s '{self.ssid}' -f '{self._MAIN_DICTIONARY_FILE}' -2"
@@ -57,12 +58,13 @@ class AWSAutomation:
         while output:
             # Check if the success key is in output
             if self._SUCCESS_KEY in output:
-                parsed, self.cracked_password = output.split('"')
+                parsed, self.cracked_password, _ = output.split('"')
                 self.cracked_password.strip()
-                print(self.send_mail())
+                self.send_mail()
+                print("[+] Sent email with cracked password")
                 break
             elif self._FAILED_KEY in output:
-                print("Unable to crack cracked_password")
+                print("[-] Unable to crack cracked_password")
                 break
 
     def send_mail(self):
@@ -73,7 +75,7 @@ class AWSAutomation:
         return requests.post(
             f"https://api.mailgun.net/v3/{self._MAILGUN_DOMAIN}/messages",
             auth=("api", self._MAILGUN_API_KEY),
-            data={"from": f"Excited User <{self._MAILGUN_EMAIL}@{self._MAILGUN_DOMAIN}>",
+            data={"from": f"User <{self._MAILGUN_USER}@{self._MAILGUN_DOMAIN}>",
                   "to": [self._DESTINATION_EMAIL],
                   "subject": "Results",
                   "text": f"Your cracked_password has been cracked for {self.ssid}:{self.cracked_password}"})
@@ -88,7 +90,7 @@ class AWSAutomation:
         """
         output, errors = self.execute_command('which cowpatty')
         if not output.decode():
-            print("Please install cowpatty to continue!")
+            print("[-] Please install cowpatty to continue!")
             exit(1)
 
     @staticmethod
@@ -102,7 +104,7 @@ class AWSAutomation:
 
     @staticmethod
     def help_message():
-        print("Invalid arguments, Usage: crack.py [ssid] [pcap file path]")
+        print("[-] Invalid arguments, Usage: crack.py [ssid] [pcap file path]")
 
 
 if __name__ == '__main__':
