@@ -28,13 +28,10 @@ class RemoteConnectionConfig:
         Context.validate_positive_int(port, message="Invalid remote port specified", section="REMOTE_CONNECTION")
         self.context.remote_connection_port = port or 22
 
-        # Validate auth type
-        # if (self.context.private_key_path or self.context.remote_password) is None:
-        #     raise ConfigurationException(message='Error in authentication type for remote connection, no valid '
-        #                                          'private key nor password were specified!',
-        #                                  section='REMOTE_CONNECTIONS')
-
-        self.context.remote_username = self.current_config_section.get('remote_ssh_username')
+        # Validate username
+        self.context.remote_username = self.current_config_section.get('remote_ssh_username') or None
+        if not self.context.remote_username:
+            raise ConfigurationException(message='No remote username was configured', section='REMOTE_CONNECTIONS')
 
         remote_upload_path = self.current_config_section.get('remote_upload_dir')
         self.context.remote_upload_dir = remote_upload_path if remote_upload_path else \

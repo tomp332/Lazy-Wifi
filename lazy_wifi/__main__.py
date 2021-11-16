@@ -17,11 +17,11 @@ class LazyWifi:
         self.handshake_manager = None
         self.aws = None
 
-        # If ec2 was configured, initialize the instance and the connection
+        # If aws ec2 was configured, initialize the instance and the connection
         if self.context.remote_machine_is_aws:
             self.aws = AWSHandler(self.context)
-            self.remote_connection = RemoteConnection(self.context)
-        elif self.context.remote_machine_available:
+        # If any remote configuration is available at all
+        if self.context.remote_machine_available:
             self.remote_connection = RemoteConnection(self.context)
 
     def start_app(self):

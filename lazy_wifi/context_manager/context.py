@@ -47,7 +47,7 @@ class Context:
         self.remote_files_dir = None
         self.remote_connection_timeout = 10
         self.remote_upload_dir = None
-        self.remote_automation_script_path = f'/home/{self.remote_username}/automation.py'
+        self.remote_automation_script_path = f'/home/{self.remote_username}/remote_machine_automation.py'
 
         # AWS configuration
         self.instance_id = None
