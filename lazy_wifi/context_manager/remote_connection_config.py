@@ -44,5 +44,6 @@ class RemoteConnectionConfig:
         if self.context.remote_machine_is_aws:
             print_status("Remote machine configuration set for AWS instance")
         else:
-            print_status("AWS configurations setup incorrectly, continuing with SSH remote connection without AWS instance")
+            print_status("AWS configurations setup incorrectly, continuing with SSH remote connection without AWS "
+                         "instance")
         self.context.remote_machine_available = True
