@@ -120,22 +120,22 @@ handshake_scan_time = 35
 # SSH hostname
 remote_ssh_hostname =
 
-# SSH port, default is 22
-remote_connection_port =
-
-# SSH private key, if none leave blank
-private_key_path =
+# SSH username
+remote_ssh_username =
 
 # SSH password, if a private key was not specified
 remote_ssh_password =
 
-# SSH username
-remote_ssh_username =
+# SSH private key, if none leave blank
+private_key_path =
 
-# Path to upload all pcap files for cracking default is /home/<given username>/wifi_uploads
+# SSH port, default is 22
+remote_connection_port =
+
+# Path to upload all pcap files for cracking default is /home/<remote username>/wifi_uploads
 remote_upload_dir =
 
-# Path for the remote automation python script, default is /home/<given username>/remote_machine_automation.py
+# Path for the remote automation python script, default is /home/<remote username>/remote_automation.py
 remote_automation_script_path =
 
 [AWS]
