@@ -6,7 +6,7 @@ from shlex import split
 from subprocess import Popen, PIPE
 
 
-class AWSAutomation:
+class RemoteAutomation:
     """
     USAGE:
     1. Upload to AWS machine
@@ -108,4 +108,4 @@ class AWSAutomation:
 
 
 if __name__ == '__main__':
-    AWSAutomation().start_cracking()
+    RemoteAutomation().start_cracking()
