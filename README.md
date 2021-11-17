@@ -194,7 +194,7 @@ sudo lazy_venv/bin/python -m lazy_wifi
 
 Feel free to open issues and contact me with any question :+1:
 
-- :email: Email: [pako_33@protonmail.com](mailto:pako_33@protonmail.com)
+- :email: Email: [tomp12@protonmail.com](mailto:tomp12@protonmail.com)
 
 - :globe_with_meridians: Twitter: [Pako__33](https://twitter.com/Pako__33)
 
