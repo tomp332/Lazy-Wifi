@@ -196,9 +196,9 @@ Feel free to open issues and contact me with any question :+1:
 
 - :email: Email: [tomp12@protonmail.com](mailto:tomp12@protonmail.com)
 
-- :globe_with_meridians: Twitter: [Pako__33](https://twitter.com/Pako__33)
+- :globe_with_meridians: Twitter: [P@ko](https://twitter.com/tomp332)
 
-- :octocat: Github [pako332](https://github.com/pako332)
+- :octocat: Github [pako332](https://github.com/tomp332)
 <br><br>
 
 # Disclaimer
