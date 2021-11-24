@@ -198,7 +198,7 @@ Feel free to open issues and contact me with any question :+1:
 
 - :globe_with_meridians: Twitter: [P@ko](https://twitter.com/tomp332)
 
-- :octocat: Github [pako332](https://github.com/tomp332)
+- :octocat: Github [P@ko](https://github.com/tomp332)
 <br><br>
 
 # Disclaimer
