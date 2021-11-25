@@ -46,5 +46,5 @@ if __name__ == "__main__":
     try:
         lazy_wifi = LazyWifi()
         lazy_wifi.start_app()
-    except (KeyboardInterrupt, ConfigurationException, LazyWifiException) as e:
+    except (KeyboardInterrupt, ConfigurationException, LazyWifiException):
         lazy_wifi and lazy_wifi.cleanup()
