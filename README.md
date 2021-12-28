@@ -1,13 +1,6 @@
-<p align="center">
-  <img src="./images/logo.jpg" alt="Logo" width=200 height=120>    
-  </a>
+<p align="center"><img width=20% src="./images/logo.jpg"></p>
+<p align="center"><img width=40% src="./images/title.png"></p>
 
-  <h3 align="center">Lazy-Wifi</h3>
-
-  <p align="center">
-    Automation made simple
-   </p>
-</p>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Python](https://img.shields.io/badge/python-v3.8+-blue.svg)
