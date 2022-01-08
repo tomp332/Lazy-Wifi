@@ -37,7 +37,7 @@
 </div>
   <br></br>
   Lazy-Wifi is an automated wifi attack tool that makes your life easier regarding to the entire brute force attack surface.
-  This project was built in order to connect the Scanning, Handshake capture and Brute force process of the basic and known faze of wifi attacking.
+  This project was built in order to connect the Scanning, Handshake capture and Brute force process of the basic and known phase of wifi attacking.
   <br><br>
   The following happens when running this automation:
   
