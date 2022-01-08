@@ -197,11 +197,14 @@ sudo lazy_venv/bin/python -m lazy_wifi
 
 Feel free to open issues and contact me with any question :+1:
 
-- :email: Email: [tomp12@protonmail.com](mailto:tomp12@protonmail.com)
+<p align="center">
 
-- :globe_with_meridians: Twitter: [P@ko](https://twitter.com/tomp332)
+  [![Email](https://img.shields.io/badge/ProtonMail-8B89CC?style=for-the-badge&logo=protonmail&logoColor=white)](mailto:tomp12@protonmail.com)
+  [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/tom-paz-906788226/)
+  [![Tweet](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/tomp332)
+  [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tomp332)
+</p>
 
-- :octocat: Github [P@ko](https://github.com/tomp332)
 <br><br>
 
 # Disclaimer
