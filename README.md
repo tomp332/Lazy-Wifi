@@ -35,8 +35,7 @@
   <img src="./images/docker_logo.png" alt="Docker logo" width=100 height=80>
 </div>
   <br></br>
-  Lazy-Wifi is an automated wifi attack tool that makes your life easier regarding to the entire brute force attack surface.
-  This project was built in order to connect the Scanning, Handshake capture and Brute force process of the basic and known phase of wifi attacking.
+ Lazy-Wifi is an automated wifi attack tool that makes your life easier regarding the entire brute force attack surface. This project was built in order to connect the scanning, handshake capture and brute-force process of the basic and known phase of wifi attacking.
   <br><br>
   The following happens when running this automation:
   
